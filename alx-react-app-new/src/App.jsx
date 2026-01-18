@@ -1,24 +1,16 @@
-import Header from './Header';
-import MainContent from './MainContent';
-import Footer from './Footer';
-import UserProfile from './UserProfile';
+import Counter from './components/Counter';
 
 function App() {
   return (
     <div>
-      <Header />
-      <MainContent />
-      <UserProfile
-        name="John Doe"
-        age={28}
-        bio="A passionate traveler and city explorer."
-      />
-      <Footer />
+      <h1>Counter Application</h1>
+      <Counter />
     </div>
   );
 }
 
 export default App;
+
 
 
 
