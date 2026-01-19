@@ -1,5 +1,7 @@
-import UserProfile from './UserProfile';
-import UserContext from './UserContext';
+// src/components/App.jsx
+
+import { UserContext } from "./components/UserContext";          // same folder
+import ProfilePage from "./components/ProfilePage";             // same folder
 
 function App() {
   const userData = {
@@ -9,16 +11,12 @@ function App() {
 
   return (
     <UserContext.Provider value={userData}>
-      <UserProfile />
+      <div style={{ padding: '20px' }}>
+        <h1>Profile Application</h1>
+        <ProfilePage />
+      </div>
     </UserContext.Provider>
   );
 }
 
 export default App;
-
-
-
-
-
-
-
