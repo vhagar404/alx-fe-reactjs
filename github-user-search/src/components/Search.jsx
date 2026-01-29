@@ -12,7 +12,7 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const fetchResults = async (newPage = 1, append = false) => {
+  const fetchUserData = async (newPage = 1, append = false) => {
     setLoading(true);
     setError('');
 
@@ -37,11 +37,11 @@ const Search = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    fetchResults(1, false);
+    fetchUserData(1, false);
   };
 
   const handleLoadMore = () => {
-    fetchResults(page + 1, true);
+    fetchUserData(page + 1, true);
   };
 
   return (
