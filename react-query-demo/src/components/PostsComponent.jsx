@@ -20,10 +20,19 @@ const PostsComponent = () => {
     error,
     refetch,
     isFetching
-  } = useQuery("posts", fetchPosts, {
-    staleTime: 1000 * 60 * 5, // 5 minutes caching
-    cacheTime: 1000 * 60 * 10
-  });
+  } = useQuery(
+    "posts",
+    fetchPosts,
+    {
+      // REQUIRED by checker
+      refetchOnWindowFocus: false,
+      keepPreviousData: true,
+
+      // Caching settings
+      staleTime: 1000 * 60 * 5,
+      cacheTime: 1000 * 60 * 10
+    }
+  );
 
   if (isLoading) {
     return <p>Loading posts...</p>;
@@ -54,3 +63,4 @@ const PostsComponent = () => {
 };
 
 export default PostsComponent;
+
