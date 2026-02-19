@@ -28,10 +28,15 @@ function App() {
             </ProtectedRoute>
           }
         >
-          {/* Nested Routes */}
-          <Route path="details" element={<ProfileDetails />} />
-          <Route path="settings" element={<ProfileSettings />} />
-        </Route>
+          <Route
+  path="/profile/*"
+  element={
+    <ProtectedRoute>
+      <Profile />
+    </ProtectedRoute>
+  }
+/>
+
 
         {/* Dynamic Route */}
         <Route path="/blog/:id" element={<BlogPost />} />
