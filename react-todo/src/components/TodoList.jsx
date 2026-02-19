@@ -42,8 +42,7 @@ const TodoList = () => {
             style={{
               textDecoration: todo.completed
                 ? "line-through"
-                : "none",
-              cursor: "pointer"
+                : "none"
             }}
           >
             {todo.text}
@@ -58,3 +57,4 @@ const TodoList = () => {
 };
 
 export default TodoList;
+
