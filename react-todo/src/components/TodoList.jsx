@@ -1,56 +1,50 @@
-import { useState } from 'react';
-import AddTodoForm from './AddTodoForm';
+import React, { useState } from "react";
+import AddTodoForm from "./AddTodoForm";
 
-const initialTodos = [
-  { id: 1, text: 'Learn React', completed: false },
-  { id: 2, text: 'Write Tests', completed: false },
-  { id: 3, text: 'Ship Project', completed: true },
-];
-
-const TodoList = () => {
-  const [todos, setTodos] = useState(initialTodos);
+function TodoList() {
+  const [todos, setTodos] = useState([
+    { text: "Learn React", completed: false },
+    { text: "Write Tests", completed: false },
+    { text: "Ship Project", completed: false },
+  ]);
 
   const addTodo = (text) => {
-    setTodos([
-      ...todos,
-      { id: Date.now(), text, completed: false },
-    ]);
+    setTodos([...todos, { text, completed: false }]);
   };
 
-  const toggleTodo = (id) => {
-    setTodos(
-      todos.map(todo =>
-        todo.id === id
-          ? { ...todo, completed: !todo.completed }
-          : todo
-      )
-    );
+  const toggleTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos[index].completed = !newTodos[index].completed;
+    setTodos(newTodos);
   };
 
-  const deleteTodo = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id));
+  const deleteTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
   };
 
   return (
     <div>
-      <h1>Todo List</h1>
-      <AddTodoForm onAdd={addTodo} />
+      <AddTodoForm addTodo={addTodo} />
       <ul>
-        {todos.map(todo => (
+        {todos.map((todo, index) => (
           <li
-            key={todo.id}
-            onClick={() => toggleTodo(todo.id)}
+            key={index}
+            onClick={() => toggleTodo(index)}
             style={{
-              textDecoration: todo.completed ? 'line-through' : 'none',
-              cursor: 'pointer'
+              cursor: "pointer",
+              textDecoration: todo.completed ? "line-through" : "none",
             }}
           >
             {todo.text}
             <button
+              data-testid={`delete-${todo.text}`}
               onClick={(e) => {
                 e.stopPropagation();
-                deleteTodo(todo.id);
+                deleteTodo(index);
               }}
+              style={{ marginLeft: "10px" }}
             >
               Delete
             </button>
@@ -59,6 +53,6 @@ const TodoList = () => {
       </ul>
     </div>
   );
-};
+}
 
 export default TodoList;
